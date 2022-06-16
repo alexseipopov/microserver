@@ -17,8 +17,9 @@ def index():
     if request.method != 'GET':
         return 'not get'
     print(request.args.get('login'), request.args.get('password'))
-    if request.args.get('login') == login and request.args.get('password') == password:
-        return token
+    if login in request.headers:
+        if request.headers.get(login) == password:
+            return token
     return 'not match'
 
 
